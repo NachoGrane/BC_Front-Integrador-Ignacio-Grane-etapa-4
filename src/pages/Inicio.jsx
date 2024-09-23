@@ -2,7 +2,7 @@ import { useContext } from "react";
 import BrandSectionHome from "../components/BrandSectionHome";
 import Hero from "../components/Hero";
 import ProductosContext from "../context/ProductosContext";
-import BtnCarrito from "../components/btnCarrito";
+import BtnCarrito from "../components/BtnCarrito";
 
 const Inicio = () => {
   const { productos } = useContext(ProductosContext);
