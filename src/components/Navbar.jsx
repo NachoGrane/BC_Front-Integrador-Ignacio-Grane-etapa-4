@@ -22,7 +22,7 @@ const Navbar = ({ setNavBarActive }) => {
       <header>
         <div className="image-text ms-2">
           <span className="image">
-            <img src="../public/img/logo.webp" alt="logo" />
+            <img src="img/logo.webp" alt="logo" />
           </span>
         </div>
         <i
