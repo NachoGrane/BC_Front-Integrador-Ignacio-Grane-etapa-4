@@ -1,0 +1,42 @@
+.card {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+  &_table {
+    &-img {
+      width: 20% !important;
+    }
+  }
+}
+
+.btn {
+  &_agregarProducto {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 28px;
+    background-color: white !important;
+    border: 1px solid #00000079 !important;
+    > i {
+      color: #000 !important;
+      font-size: 24px;
+    }
+    &:hover {
+      border: 1px solid #000 !important;
+      box-shadow: 1px 1px 20px 0px rgb(0 0 0 / 15%) !important;
+    }
+  }
+
+  &_quitarProducto {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translatex(-100%);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}

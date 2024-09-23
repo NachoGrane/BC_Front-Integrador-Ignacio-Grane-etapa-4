@@ -1,0 +1,52 @@
+@import "bootstrap";
+
+/* Resets */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  /* ===== Colors ===== */
+  --body-color: #f8f8f8;
+  --sidebar-color: #211a21;
+  --primary-color: #4f43ae;
+  --primary-color-light: #f6f5ff;
+  --text-color: #ffffff;
+  --bs-black: #211a21;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
+
+/* Defaults */
+
+body {
+  min-height: 90vh;
+  background-color: var(--body-color);
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.toggle-body {
+  padding-left: 250px;
+  transition: var(--tran-03);
+}
+
+.toggle-bodyClose {
+  padding-left: 87px;
+  transition: var(--tran-03);
+}
+
+.body-container {
+  min-height: 88vh;
+}
