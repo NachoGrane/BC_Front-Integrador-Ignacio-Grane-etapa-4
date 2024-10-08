@@ -26,15 +26,15 @@ const Carrito = () => {
     <>
       <div className="container mt-5">
         <div className="row">
-          <div className="col-12 d-flex flex-row">
-            <div className="col-8">
+          <div className="col-12 d-flex flex-column flex-md-row">
+            <div className="col-12 col-md-8">
               <h1 className="text-uppercase fw-bold"> Tu carrito</h1>
               <p>
                 Total ({carrito.length}{" "}
                 {carrito.length === 1 ? "producto" : "productos"})
                 <span className="fw-bold"> ${totalSumaPrecio.toFixed(2)}</span>
               </p>
-              <p>
+              <p style={{ textAlign: "justify" }}>
                 Los artículos en tu carrito no están reservados. Terminá el
                 proceso de compra ahora para hacerte con ellos.
               </p>
@@ -43,7 +43,7 @@ const Carrito = () => {
                   <ItemCarrito key={producto.id} producto={producto} />
                 ))}
             </div>
-            <div className="col-3 mx-5">
+            <div className="col-12 col-md-3 mx-0 mx-md-5 mt-3 mt-md-0">
               <button
                 className="btn btn-lg btn-primary d-flex flex-row justify-content-between w-100 mb-5"
                 onClick={() => handleComprar()}

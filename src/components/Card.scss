@@ -40,6 +40,9 @@
       }
     }
   }
+  @media (max-width: 768px) {
+    width: auto !important;
+  }
 }
 
 .card-body {

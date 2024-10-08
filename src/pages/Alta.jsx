@@ -62,8 +62,8 @@ const Alta = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row p-5">
+      <div className="container-fluid">
+        <div className="row p-3 p-md-5">
           <div className="col-12">
             <h3>{!productoAEditar ? "Agregar Producto" : "Editar Producto"}</h3>
             <form onSubmit={handleSubmit}>
@@ -166,7 +166,7 @@ const Alta = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-check">
+              <div className="form-check mb-3">
                 <label htmlFor="form-label" className="form-check-label">
                   Envío
                 </label>
@@ -195,7 +195,13 @@ const Alta = () => {
           </div>
         </div>
         {/* //Tabla productos */}
-        <Tabla />
+        <div className="row">
+          <div className="col-12">
+            <div className="table-responsive">
+              <Tabla />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

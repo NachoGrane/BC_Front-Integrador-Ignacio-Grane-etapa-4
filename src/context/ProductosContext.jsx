@@ -62,11 +62,34 @@ const ProductosProvider = ({ children }) => {
     }
   };
 
+  const deleteProductoContext = async (productoAEliminar) => {
+    try {
+      const options = {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(productoAEliminar),
+      };
+
+      const urlEdicion = url + productoAEliminar.id; // http://local.../productos/9
+
+      const deleteProduct = await helperPeticionesHttp(urlEdicion, options);
+
+      const nuevaListaProductos = productos.filter(
+        (p) => p.id !== deleteProduct.id
+      );
+
+      setProductos(nuevaListaProductos);
+    } catch (error) {
+      console.error("[deleteProductoContext]", error);
+    }
+  };
+
   const data = {
     productos,
     crearProductoContext,
     actualizarProductoContext,
     productoAEditar,
+    deleteProductoContext,
     setProductoAEditar,
   };
 

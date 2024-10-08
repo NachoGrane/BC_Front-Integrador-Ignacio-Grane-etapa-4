@@ -3,11 +3,7 @@ import "./Hero.scss";
 const Hero = () => {
   return (
     <>
-      <div
-        id="carouselExampleSlidesOnly"
-        className="carousel slide"
-        data-bs-ride="carousel"
-      >
+      <div className="carousel slide d-none d-md-block" data-bs-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img

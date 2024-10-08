@@ -25,20 +25,31 @@ const ItemCarrito = ({ producto }) => {
       <div className="p-4 d-flex flex-row align-items-center justify-content-between w-100 position-relative">
         <div className="d-flex flex-column justify-content-between">
           <div>
-            <p className="text-uppercase fs-5 m-0">{producto.nombre}</p>
-            <p className="text-uppercase">{producto.categoria}</p>
+            <p className="text-uppercase fs-5 m-0 text-name mt-3 mt-md-0">
+              {producto.nombre}
+            </p>
+            <p className="text-uppercase fs-5 text-name m-0 m-md-inherit">
+              {producto.categoria}
+            </p>
+            <p className="d-md-none d-block text-uppercase fs-2 fw-medium">
+              {" "}
+              ${producto.precio}
+            </p>
           </div>
           <div className="d-flex flex-row align-items-center w-100">
             <button className="btn btn-primary btn_agregarProducto rounded-circle">
               <i className="bi bi-dash-lg text-black"></i>
             </button>
-            <p className="m-0 mx-5 fw-bold fs-3">1</p>
+            <p className="m-0 mx-3 mx-md-5 fw-bold fs-3">1</p>
             <button className="btn btn-primary btn_agregarProducto rounded-circle">
               <i className="bi bi-plus-lg text-black"></i>
             </button>
           </div>
         </div>
-        <p className="text-uppercase fs-2 fw-medium"> ${producto.precio}</p>
+        <p className="d-none d-md-block text-uppercase fs-2 fw-medium">
+          {" "}
+          ${producto.precio}
+        </p>
         <button
           type="button"
           className="btn btn-transparent btn_quitarProducto"

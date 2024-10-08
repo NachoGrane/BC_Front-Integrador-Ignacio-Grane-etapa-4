@@ -50,3 +50,10 @@ body {
 .body-container {
   min-height: 88vh;
 }
+
+@media (max-width: 768px) {
+  .toggle-bodyClose {
+    padding-left: 0px;
+    transition: var(--tran-03);
+  }
+}

@@ -16,6 +16,7 @@
     @media (max-width: 768px) {
       & {
         margin-bottom: 10px;
+        margin-left: 2rem;
       }
     }
     &-image {
@@ -41,7 +42,8 @@
         margin-bottom: 10px;
         @media (max-width: 768px) {
           & {
-            font-size: 0.5rem;
+            font-size: 1rem;
+            padding: 5px;
           }
         }
       }
@@ -51,7 +53,7 @@
         font-size: 0.7rem;
         @media (max-width: 768px) {
           & {
-            font-size: 0.4rem;
+            font-size: 0.8rem;
           }
         }
       }
@@ -63,7 +65,7 @@
         color: var(--bs-primary);
         @media (max-width: 768px) {
           & {
-            font-size: 0.4rem;
+            display: none;
           }
         }
       }
