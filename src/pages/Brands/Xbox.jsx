@@ -14,7 +14,7 @@ const Xbox = () => {
         </div>
       </div>
       <div className="row ms-0 ms-md-4">
-        <div className="col-12 d-flex flex-row justify-content-center flex-wrap px-0 mb-4">
+        <div className="col-12 d-flex flex-row justify-content-center justify-content-md-start flex-wrap px-0 mb-4">
           {productos &&
             productos
               .filter((p) => p.marca === "xbox")

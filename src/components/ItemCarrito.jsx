@@ -11,6 +11,13 @@ const ItemCarrito = ({ producto }) => {
       eliminarProductoDelCarritoContext(id);
     }, 350);
   };
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  };
+
   return (
     <div
       className={`card card_table d-flex flex-row w-100 mb-2 mt-2${
@@ -33,7 +40,7 @@ const ItemCarrito = ({ producto }) => {
             </p>
             <p className="d-md-none d-block text-uppercase fs-2 fw-medium">
               {" "}
-              ${producto.precio}
+              ${formatPrice(producto.precio)}
             </p>
           </div>
           <div className="d-flex flex-row align-items-center w-100">

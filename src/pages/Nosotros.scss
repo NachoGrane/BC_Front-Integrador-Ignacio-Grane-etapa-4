@@ -1,0 +1,18 @@
+.card {
+  &_info {
+    background-color: #212121;
+    border-radius: 3px;
+
+    &-container {
+      &-text {
+        color: white;
+        & > h4 {
+          font-size: 1.5rem;
+        }
+        & > p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

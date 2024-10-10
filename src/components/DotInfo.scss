@@ -1,0 +1,15 @@
+.rounded {
+  &-circle {
+    height: 48px;
+    width: 48px;
+    background-color: #cec9cc;
+    z-index: 1;
+  }
+  &-inner {
+    height: 36px;
+    width: 36px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+  }
+}

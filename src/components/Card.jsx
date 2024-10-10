@@ -13,6 +13,13 @@ const Card = ({ producto }) => {
     agregarProductoAlCarritoContext(producto);
   };
 
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  };
+
   return (
     <>
       <div className="card me-2 position-relative justify-content-between mb-2 mt-2">
@@ -43,7 +50,9 @@ const Card = ({ producto }) => {
         />
         <div className="card-body card_body d-flex flex-row justify-content-between align-items-center">
           <div className="d-flex flex-column gap-0">
-            <p className="card-text card_body-price m-0">${producto.precio}</p>
+            <p className="card-text card_body-price m-0">
+              ${formatPrice(producto.precio)}
+            </p>
             <p className="card-text card_body-text m-0">{producto.nombre}</p>
             <p className="card-subtitle card_body-subtitle text-capitalize m-0">
               {producto.marca}

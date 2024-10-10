@@ -12,6 +12,14 @@ const Carrito = () => {
     (suma, p) => suma + Number.parseFloat(p.precio),
     0
   );
+
+  const formatPrice = (price) => {
+    return price.toLocaleString("es-AR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   const handleComprar = () => {
     console.log("Comprando...");
     guardarCarritoContext(carrito);
@@ -32,7 +40,10 @@ const Carrito = () => {
               <p>
                 Total ({carrito.length}{" "}
                 {carrito.length === 1 ? "producto" : "productos"})
-                <span className="fw-bold"> ${totalSumaPrecio.toFixed(2)}</span>
+                <span className="fw-bold">
+                  {" "}
+                  ${formatPrice(totalSumaPrecio)}
+                </span>
               </p>
               <p style={{ textAlign: "justify" }}>
                 Los artículos en tu carrito no están reservados. Terminá el
@@ -58,7 +69,10 @@ const Carrito = () => {
                   ({carrito.length}{" "}
                   {carrito.length === 1 ? "producto" : "productos"})
                 </p>
-                <p className="m-0 text-muted"> ${totalSumaPrecio.toFixed(2)}</p>
+                <p className="m-0 text-muted">
+                  {" "}
+                  ${formatPrice(totalSumaPrecio)}
+                </p>
               </div>
               <div className="d-flex flex-row w-100 justify-content-between mb-3">
                 <p className="m-0 text-muted">Entrega</p>
@@ -69,7 +83,7 @@ const Carrito = () => {
                   <p className="m-0 fw-bold">Total</p>
                   <p className="m-0 text-muted">(IVA incluido)</p>
                 </div>
-                <p className="m-0 fw-bold">${totalSumaPrecio.toFixed(2)}</p>
+                <p className="m-0 fw-bold">${formatPrice(totalSumaPrecio)}</p>
               </div>
               <div className="mt-5">
                 <button
