@@ -4,13 +4,13 @@ import "./Nosotros.scss";
 const Nosotros = () => {
   return (
     <>
-      <div className="container mt-5">
-        <div className="row card_info shadow p-5">
+      <div className="container mt-md-5 p-3 p-md-0">
+        <div className="row card_info shadow p-3 p-md-5">
           <div className="col-12 card_info-container px-0">
-            <div className="d-flex flex-row my-5">
-              <div className="col-6 card_info-container-text pe-5">
+            <div className="d-flex flex-column flex-md-row my-5">
+              <div className="col-12 col-md-6 card_info-container-text pe-5">
                 <div className="d-flex flex-row">
-                  <div className="col-1 px-0 me-4">
+                  <div className="col-1 px-0 me-5 me-md-4">
                     <DotInfo color="azul" icon="info" mt="3px" fs="3" />
                   </div>
                   <div className="col-11">
@@ -30,9 +30,9 @@ const Nosotros = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-6 card_info-container-text d-flex flex-column gap-4 pe-5">
+              <div className="col-12 col-md-6 card_info-container-text d-flex flex-column gap-4 pe-5">
                 <div className="d-flex flex-row">
-                  <div className="col-1 px-0 me-4">
+                  <div className="col-1 px-0 me-5 me-md-4">
                     <DotInfo color="verde" icon="journals" mt="2px" fs="5" />
                   </div>
                   <div className="col-11">
@@ -50,10 +50,10 @@ const Nosotros = () => {
                 </div>
               </div>
             </div>
-            <div className="d-flex flex-row my-5">
-              <div className="col-6 card_info-container-text d-flex flex-column gap-4 pe-5">
+            <div className="d-flex flex-column flex-md-row my-5">
+              <div className="col-12 col-md-6 card_info-container-text d-flex flex-column gap-4 pe-5">
                 <div className="d-flex flex-row">
-                  <div className="col-1 px-0 me-4">
+                  <div className="col-1 px-0 me-5 me-md-4">
                     <DotInfo
                       color="amarillo"
                       icon="question-lg"
@@ -76,9 +76,9 @@ const Nosotros = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-6 card_info-container-text d-flex flex-column gap-4 pe-5">
+              <div className="col-12 col-md-6 card_info-container-text d-flex flex-column gap-4 pe-5">
                 <div className="d-flex flex-row">
-                  <div className="col-1 px-0 me-4">
+                  <div className="col-1 px-0 me-5 me-md-4">
                     <DotInfo
                       color="rojo"
                       icon="airplane-engines"
