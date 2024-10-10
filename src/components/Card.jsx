@@ -35,7 +35,7 @@ const Card = ({ producto }) => {
               const display = icon === "console" ? "d-none" : "";
               return (
                 <div
-                  className={`card_icon-category-circle rounded-circle ${spaceIcon} text-white bg-dark d-flex justify-content-center align-items-center ${display}`}
+                  className={`card_icon-category-circle ${spaceIcon} text-white bg-dark d-flex justify-content-center align-items-center ${display}`}
                   key={index}
                 >
                   <i className={`bi bi-${iconClass} m-0 p-0`}></i>

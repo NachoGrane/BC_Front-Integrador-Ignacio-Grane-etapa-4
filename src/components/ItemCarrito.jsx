@@ -55,7 +55,7 @@ const ItemCarrito = ({ producto }) => {
         </div>
         <p className="d-none d-md-block text-uppercase fs-2 fw-medium">
           {" "}
-          ${producto.precio}
+          ${formatPrice(producto.precio)}
         </p>
         <button
           type="button"
