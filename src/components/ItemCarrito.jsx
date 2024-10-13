@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import "./ItemCarrito.scss";
 import CarritoContext from "../context/CarritoContext";
+import formatPrice from "../helpers/format-price.js";
+
 const ItemCarrito = ({ producto }) => {
   const { eliminarProductoDelCarritoContext } = useContext(CarritoContext);
   const [isRemoving, setIsRemoving] = useState(false);
@@ -10,12 +12,6 @@ const ItemCarrito = ({ producto }) => {
     setTimeout(() => {
       eliminarProductoDelCarritoContext(id);
     }, 350);
-  };
-  const formatPrice = (price) => {
-    return price.toLocaleString("es-AR", {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
   };
 
   return (

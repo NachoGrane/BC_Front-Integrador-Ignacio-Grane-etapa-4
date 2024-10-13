@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./Card.scss";
 import CarritoContext from "../context/CarritoContext";
+import formatPrice from "../helpers/format-price.js";
 
 const Card = ({ producto }) => {
   const iconos = [producto.categoria, producto.marca];
@@ -11,13 +12,6 @@ const Card = ({ producto }) => {
     console.log(producto);
 
     agregarProductoAlCarritoContext(producto);
-  };
-
-  const formatPrice = (price) => {
-    return price.toLocaleString("es-AR", {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
   };
 
   return (

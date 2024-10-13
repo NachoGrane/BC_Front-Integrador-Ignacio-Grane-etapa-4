@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import "./TablaFila.scss";
 import ProductosContext from "../context/ProductosContext";
+import formatPrice from "../helpers/format-price.js";
 
 const TablaFila = ({ producto }) => {
   const { setProductoAEditar, deleteProductoContext } =
     useContext(ProductosContext);
-
   //console.log(producto)
   const handleEditar = (producto) => {
     console.log("Producto a editar...", producto.id);
@@ -23,7 +23,7 @@ const TablaFila = ({ producto }) => {
         {producto.nombre}
       </td>
       <td scope="row" colSpan={1} className="d-none d-md-table-cell">
-        {producto.precio}
+        {formatPrice(producto.precio)}
       </td>
       <td scope="row" colSpan={1} className="d-none d-md-table-cell">
         {producto.stock}

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ProductosContext from "../context/ProductosContext";
 import Tabla from "../components/Tabla";
+import DragAndDrop from "../components/DragAndDrop";
 const Alta = () => {
   const formInit = {
     id: null,
@@ -15,13 +16,14 @@ const Alta = () => {
   };
 
   const [form, setForm] = useState(formInit);
-
   const {
     crearProductoContext,
     actualizarProductoContext,
     productoAEditar,
     setProductoAEditar,
   } = useContext(ProductosContext);
+
+  const [reset, setReset] = useState(false);
 
   useEffect(() => {
     productoAEditar ? setForm(productoAEditar) : setForm(formInit);
@@ -31,6 +33,7 @@ const Alta = () => {
     e.preventDefault();
 
     try {
+      console.log(form);
       if (form.id === null) {
         await crearProductoContext(form);
       } else {
@@ -42,20 +45,21 @@ const Alta = () => {
     }
   };
 
-  const handleChange = (e) => {
-    //console.log(e);
-
+  const handleChange = (e, fotoURL) => {
     const { type, name, checked, value } = e.target;
-    //console.log(value);
-
+    /* if (e.target.name === "foto") {
+      form.foto = fotoURL;
+    } */
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
+      [name]: type === "file" ? fotoURL : value,
     });
+    console.log("[form]", form);
   };
 
   const handleReset = () => {
-    console.log("handleReset");
+    setReset(true);
     setForm(formInit);
     setProductoAEditar(null);
   };
@@ -157,13 +161,19 @@ const Alta = () => {
                 <label htmlFor="lbl-foto" className="form-label">
                   Foto
                 </label>
-                <input
+                {/* <input
                   type="text"
                   name="foto"
                   id="lbl-foto"
                   className="form-control"
                   value={form.foto}
                   onChange={handleChange}
+                /> */}
+                <DragAndDrop
+                  handleChangeAlta={handleChange}
+                  resetState={reset}
+                  setResetState={setReset}
+                  name="foto"
                 />
               </div>
               <div className="form-check mb-3">

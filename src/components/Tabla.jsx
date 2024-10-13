@@ -6,6 +6,8 @@ import ProductosContext from "../context/ProductosContext";
 const Tabla = () => {
   const { productos } = useContext(ProductosContext);
 
+  
+
   return (
     <table className="table table-striped">
       <thead>
