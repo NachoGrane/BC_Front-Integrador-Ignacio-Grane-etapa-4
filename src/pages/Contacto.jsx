@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import DotInfo from "../components/DotInfo";
 import "./Contacto.scss";
 import Swal from "sweetalert2";
@@ -17,6 +17,8 @@ const Contacto = () => {
 
   const [form, setForm] = useState(formInit);
   const [loading, setLoading] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const formRef = useRef(null);
   const url = import.meta.env.VITE_BACKEND_CONTACTO;
 
   const showSwal = () => {
@@ -30,38 +32,59 @@ const Contacto = () => {
   };
 
   const validateInput = () => {
-    return true;
+    const inputs = [
+      iptNombre.value,
+      iptApellido.value,
+      iptEmail.value,
+      iptPedido.value,
+      iptConsulta.value,
+      txtAreaRazon.value,
+    ];
+
+    const allValid = inputs.every((input) => input !== "");
+
+    setInvalid(!allValid);
+    console.log("[validateInput]", allValid);
+
+    return allValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (validateInput) {
+
+    let ok = validateInput();
+
+    if (ok) {
       try {
         const options = {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(form),
         };
-
-        console.log(form);
         const newForm = await helperPeticionesHttp(url, options);
+        setLoading(false);
         showSwal();
       } catch (error) {
         console.error("[handleSubmit - Contacto]", error);
       }
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleChange = (e) => {
-    const { type, name, checked, value } = e.target;
+    const { name, value } = e.target;
 
     setForm({
       ...form,
       [name]: value,
     });
-    //console.log(form);
+  };
+
+  const handleSubmitClick = (e) => {
+    e.preventDefault();
+    handleSubmit(e);
   };
   return (
     <>
@@ -249,7 +272,7 @@ const Contacto = () => {
                     <div className="d-flex flex-column gap-4">
                       <h4 className="text-uppercase">Contacto</h4>
                       {/* Formulario */}
-                      <form onSubmit={handleSubmit}>
+                      <form ref={formRef} onSubmit={handleSubmit}>
                         <div className="col-12 d-flex flex-row">
                           <div className="col-12 col-md-6 pe-3">
                             <div className="mb-2">
@@ -258,7 +281,9 @@ const Contacto = () => {
                               </label>
                               <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="iptNombre"
                                 name="nombre"
                                 placeholder="Nombre..."
@@ -277,7 +302,9 @@ const Contacto = () => {
                               </label>
                               <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="iptApellido"
                                 placeholder="Apellido..."
                                 onChange={handleChange}
@@ -295,7 +322,9 @@ const Contacto = () => {
                               </label>
                               <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="iptEmail"
                                 placeholder="name@email.com"
                                 onChange={handleChange}
@@ -311,7 +340,9 @@ const Contacto = () => {
                               </label>
                               <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="iptPedido"
                                 placeholder="Nro. pedido"
                                 onChange={handleChange}
@@ -332,7 +363,9 @@ const Contacto = () => {
                               </label>
                               <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="iptConsulta"
                                 placeholder="Área de consulta..."
                                 onChange={handleChange}
@@ -352,7 +385,9 @@ const Contacto = () => {
                                 Escribe la razón de contacto
                               </label>
                               <textarea
-                                className="form-control"
+                                className={`form-control ${
+                                  invalid ? "is-invalid" : ""
+                                }`}
                                 id="txtAreaRazon"
                                 rows="4"
                                 onChange={handleChange}
@@ -362,17 +397,19 @@ const Contacto = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="col-12 d-flex justify-content-center">
-                          <input
-                            type="submit"
-                            className={`btn btn-primary btnSpinner text-uppercase px-5 mt-3 ${
-                              loading ? "loading" : ""
-                            }`}
-                            value={"Enviar"}
-                            disabled={loading}
-                          />
-                        </div>
+                        <input type="submit" style={{ display: "none" }} />
                       </form>
+                      <div className="col-12 d-flex justify-content-center">
+                        <button
+                          type="button"
+                          className={`btn btn-primary btnSpinner text-uppercase px-5 mt-3 ${
+                            loading ? "loading" : ""
+                          }`}
+                          onClick={handleSubmitClick}
+                        >
+                          Enviar
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
