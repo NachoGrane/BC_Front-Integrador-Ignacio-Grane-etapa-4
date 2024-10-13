@@ -10,8 +10,9 @@
 
   &_img {
     border-radius: 0px !important;
-    width: 363px !important;
-    height: 363px !important;
+    width: 18rem !important;
+    height: 18rem !important;
+    object-fit: cover;
   }
 
   &_body {

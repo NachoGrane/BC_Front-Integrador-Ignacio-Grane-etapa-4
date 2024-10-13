@@ -3,6 +3,7 @@ import "./Navbar.scss";
 import PagesNavbar from "./PagesNavbar";
 import ItemsNavBar from "./ItemsNavBar";
 import { NavLink } from "react-router-dom";
+import imgLogo from "../../public/img/logo.webp";
 
 const Navbar = ({ setNavBarActive }) => {
   const [isSidebarClosed, setIsSidebarClosed] = useState(true);
@@ -30,7 +31,7 @@ const Navbar = ({ setNavBarActive }) => {
         <header>
           <div className="image-text ms-2">
             <span className="image">
-              <img src="img/logo.webp" alt="logo" />
+              <img src={imgLogo} alt="logo" />
             </span>
           </div>
           <i
