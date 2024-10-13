@@ -9,6 +9,7 @@ import Playstation from "../pages/Brands/Playstation";
 import Xbox from "../pages/Brands/Xbox";
 import Nintendo from "../pages/Brands/Nintendo";
 import Perifericos from "../pages/Brands/Perifericos";
+import Search from "../pages/Search";
 
 const Rutas = () => {
   const routes = useRoutes([
@@ -47,6 +48,10 @@ const Rutas = () => {
     {
       path: "/perifericos",
       element: <Perifericos />,
+    },
+    {
+      path: "/search",
+      element: <Search />,
     },
     {
       path: "*",

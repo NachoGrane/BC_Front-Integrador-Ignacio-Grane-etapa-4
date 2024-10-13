@@ -91,6 +91,7 @@ const ProductosProvider = ({ children }) => {
     productoAEditar,
     deleteProductoContext,
     setProductoAEditar,
+    setProductos,
   };
 
   return (

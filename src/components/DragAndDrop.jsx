@@ -1,8 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { helperPeticionesHttp } from "../helpers/helper-peticiones-http";
+import "./DragAndDrop.scss";
+import Spinner from "./Spinner";
 
-const DragAndDrop = ({ handleChangeAlta, resetState, setResetState }) => {
-  const [foto, setFoto] = useState(""); // La imagen que me llegue del servidor
-  const [srcImagen, setSrcImagen] = useState(""); // Me va gestionar la imagen que carguen en el area de drop
+const DragAndDrop = ({
+  setFoto,
+  resetState,
+  setResetState,
+  srcImagen,
+  setSrcImagen,
+  setLoading,
+  loading,
+}) => {
   const refDiv = useRef(null); // querySelector
 
   const dragDrop = ["dragenter", "dragover", "dragleave", "drop"];
@@ -12,8 +21,6 @@ const DragAndDrop = ({ handleChangeAlta, resetState, setResetState }) => {
   });
 
   useEffect(() => {
-    console.log(resetState);
-
     resetState ? handleReset() : "";
   });
 
@@ -45,18 +52,16 @@ const DragAndDrop = ({ handleChangeAlta, resetState, setResetState }) => {
     };
 
     try {
-      const res = await fetch(url, options);
+      setLoading(true);
+      const imagenUp = await helperPeticionesHttp(url, options);
 
-      if (!res.ok) {
-        throw new Error("No se pudo subir la imagen");
-      }
+      console.log(imagenUp);
 
-      const imagenUp = await res.json();
-
-      setFoto(imagenUp.foto);
-      callChangeAlta(e, imagenUp.foto);
+      setFoto(imagenUp);
     } catch (error) {
       console.error("[uploadFile]", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,10 +77,6 @@ const DragAndDrop = ({ handleChangeAlta, resetState, setResetState }) => {
     handleFiles(files, e); // FilesList
   };
 
-  const callChangeAlta = (e, fotoURL) => {
-    handleChangeAlta(e, fotoURL);
-  };
-
   const handleReset = () => {
     setFoto("");
     setSrcImagen("");
@@ -85,27 +86,35 @@ const DragAndDrop = ({ handleChangeAlta, resetState, setResetState }) => {
   return (
     <>
       <div className="drop-area" onDrop={handleDrop} ref={refDiv}>
-        <p>
-          Subir imagen al servidor <b>cargar imagen</b> o con{" "}
-          <b>drag and drop</b> dentro del area punteada
-        </p>
+        {loading ? (
+          <>
+            <Spinner />
+          </>
+        ) : (
+          <>
+            <p>
+              Subir imagen al servidor <b>cargar imagen</b> o con{" "}
+              <b>drag and drop</b> dentro del area punteada
+            </p>
 
-        <input
-          type="file"
-          id="lbl-foto"
-          accept="image/*"
-          onChange={handleChange}
-          className="form-control"
-          name="foto"
-        />
+            <input
+              type="file"
+              id="lbl-foto"
+              accept="image/*"
+              onChange={handleChange}
+              className="form-control"
+              name="foto"
+            />
 
-        <div className="drop-area-image">
-          <img src={srcImagen} alt="" />
-        </div>
+            <div className="drop-area-image">
+              <img src={srcImagen} alt="" />
+            </div>
+          </>
+        )}
       </div>
       <hr />
 
-      {foto && <img src={foto} alt="imagen subida" width="200px" />}
+      {srcImagen && <img src={srcImagen} alt="imagen subida" width="200px" />}
     </>
   );
 };

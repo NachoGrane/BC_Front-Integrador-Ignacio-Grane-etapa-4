@@ -16,6 +16,10 @@ const Alta = () => {
   };
 
   const [form, setForm] = useState(formInit);
+  const [foto, setFoto] = useState(""); // La imagen que me llegue del servidor
+  const [srcImagen, setSrcImagen] = useState(""); // Me va gestionar la imagen que carguen en el area de drop
+  const [loading, setLoading] = useState(false); //
+
   const {
     crearProductoContext,
     actualizarProductoContext,
@@ -26,8 +30,13 @@ const Alta = () => {
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
-    productoAEditar ? setForm(productoAEditar) : setForm(formInit);
-  }, [productoAEditar]);
+    if (productoAEditar) {
+      setForm(productoAEditar);
+      setSrcImagen(productoAEditar.foto);
+    } else {
+      setForm(formInit);
+    }
+  }, [productoAEditar, setProductoAEditar]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,9 +44,11 @@ const Alta = () => {
     try {
       console.log(form);
       if (form.id === null) {
-        await crearProductoContext(form);
+        const productoNuevoConImagen = { ...form, ...foto };
+        await crearProductoContext(productoNuevoConImagen);
       } else {
-        await actualizarProductoContext(form);
+        const productoEditadoConImagen = { ...form, ...foto };
+        await actualizarProductoContext(productoEditadoConImagen);
       }
       handleReset();
     } catch (error) {
@@ -47,15 +58,12 @@ const Alta = () => {
 
   const handleChange = (e, fotoURL) => {
     const { type, name, checked, value } = e.target;
-    /* if (e.target.name === "foto") {
-      form.foto = fotoURL;
-    } */
+
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
       [name]: type === "file" ? fotoURL : value,
     });
-    console.log("[form]", form);
   };
 
   const handleReset = () => {
@@ -170,9 +178,13 @@ const Alta = () => {
                   onChange={handleChange}
                 /> */}
                 <DragAndDrop
-                  handleChangeAlta={handleChange}
+                  setFoto={setFoto}
                   resetState={reset}
                   setResetState={setReset}
+                  srcImagen={srcImagen}
+                  setSrcImagen={setSrcImagen}
+                  setLoading={setLoading}
+                  loading={loading}
                   name="foto"
                 />
               </div>
@@ -190,8 +202,12 @@ const Alta = () => {
                 />
               </div>
               <div className="w-100 d-flex flex-row justify-content-center">
-                <button type="submit" className="btn btn-lg btn-primary">
-                  Guardar
+                <button
+                  type="submit"
+                  className="btn btn-lg btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? "Subiendo imagen..." : "Guardar"}
                 </button>
                 <button
                   type="reset"

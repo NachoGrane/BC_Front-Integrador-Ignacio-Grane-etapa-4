@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.scss";
 import PagesNavbar from "./PagesNavbar";
 import ItemsNavBar from "./ItemsNavBar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import imgLogo from "../../public/img/logo.webp";
+import ProductosContext from "../context/ProductosContext";
+import { helperPeticionesHttp } from "../helpers/helper-peticiones-http";
 
 const Navbar = ({ setNavBarActive }) => {
   const [isSidebarClosed, setIsSidebarClosed] = useState(true);
+  const { setProductos } = useContext(ProductosContext);
+  const navigate = useNavigate();
 
   // Maneja el clic para alternar la barra lateral
   const handleToggleClick = () => {
@@ -18,6 +22,12 @@ const Navbar = ({ setNavBarActive }) => {
   const handleSearchClick = () => {
     setIsSidebarClosed(false);
     setNavBarActive(true);
+  };
+
+  const handleBuscar = async (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search?name=${e.target.value}`);
+    }
   };
 
   return (
@@ -48,6 +58,7 @@ const Navbar = ({ setNavBarActive }) => {
                 type="text"
                 className="text-black"
                 placeholder="Buscar..."
+                onKeyDown={handleBuscar}
               />
             </li>
             <ul className="menu-links p-0">
