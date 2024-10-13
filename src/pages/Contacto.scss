@@ -1,0 +1,68 @@
+.card {
+  &_info {
+    background-color: #212121;
+    border-radius: 3px;
+
+    &-container {
+      &-text {
+        color: white;
+        & > h4 {
+          font-size: 1.5rem;
+        }
+        & > p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+.btnSpinner {
+  &.loading {
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 2px solid transparent;
+      border-top-color: #fff;
+      border-right-color: #fff;
+      border-radius: 50%;
+      margin-left: 5px;
+      animation: spin 1s linear infinite;
+    }
+  }
+  &.loadingBlack {
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 2px solid transparent;
+      border-top-color: #333;
+      border-right-color: #333;
+      border-radius: 50%;
+      margin-left: 5px;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-primary {
+  background-color: #4f43ae !important;
+  border-color: #4f43ae !important;
+  &:active {
+    background-color: #393370 !important;
+  }
+  &:hover {
+    background-color: #675bc4 !important;
+  }
+}
