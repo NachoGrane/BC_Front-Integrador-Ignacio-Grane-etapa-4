@@ -62,7 +62,7 @@ const Alta = () => {
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
-      [name]: type === "file" ? fotoURL : value,
+      //[name]: type === "file" ? fotoURL : value,
     });
   };
 
