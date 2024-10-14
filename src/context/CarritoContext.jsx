@@ -9,8 +9,13 @@ const CarritoContext = createContext();
 /* 2do -> El armado del provider */
 const CarritoProvider = ({ children }) => {
   //              0
-  const [agregarAlCarrito, eliminarDelCarrito, limpiarCarrito, carrito] =
-    useLocalStorage("carrito", []);
+  const [
+    agregarAlCarrito,
+    eliminarDelCarrito,
+    limpiarCarrito,
+    carrito,
+    actualizarCarrito,
+  ] = useLocalStorage("carrito", []);
 
   const url = import.meta.env.VITE_BACKEND_CARRITOS;
 
@@ -33,15 +38,14 @@ const CarritoProvider = ({ children }) => {
       agregarAlCarrito(producto);
     } else {
       //debugger
-      const productoDeCarrito = obtenerProductoDeCarrito(producto);
-      productoDeCarrito.cantidad++;
-
+      //const productoDeCarrito = obtenerProductoDeCarrito(producto);
+      actualizarCarrito(producto.id, true);
       window.localStorage.setItem("carrito", JSON.stringify(carrito));
     }
   };
   const removerCantidadProductoDelCarritoContext = (producto) => {
-    const productoDeCarrito = obtenerProductoDeCarrito(producto);
-    productoDeCarrito.cantidad--;
+    //const productoDeCarrito = obtenerProductoDeCarrito(producto);
+    actualizarCarrito(producto.id, false);
     window.localStorage.setItem("carrito", JSON.stringify(carrito));
   };
 

@@ -6,8 +6,10 @@ const Carrito = () => {
   const { carrito, limpiarCarritoContext, guardarCarritoContext } =
     useContext(CarritoContext);
 
+  console.log(carrito);
+
   const totalSumaPrecio = carrito.reduce(
-    (suma, p) => suma + Number.parseFloat(p.precio),
+    (suma, p) => suma + Number.parseFloat(p.precio * p.cantidad),
     0
   );
 

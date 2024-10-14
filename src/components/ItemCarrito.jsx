@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./ItemCarrito.scss";
 import CarritoContext from "../context/CarritoContext";
 import formatPrice from "../helpers/format-price.js";
+import Swal from "sweetalert2";
 
 const ItemCarrito = ({ producto }) => {
   const {
@@ -11,6 +12,17 @@ const ItemCarrito = ({ producto }) => {
   } = useContext(CarritoContext);
   const [isRemoving, setIsRemoving] = useState(false);
   const [countProducto, setCountProducto] = useState(1);
+  const [stock, setStock] = useState(producto.stock);
+
+  const showSwal = () => {
+    Swal.fire({
+      position: "bottom-right",
+      icon: "error",
+      title: `Error. Ha superado el stock del producto: ${stock}`,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+  };
 
   const handleEliminarProductoCarrito = (id) => {
     setIsRemoving(true);
@@ -25,8 +37,14 @@ const ItemCarrito = ({ producto }) => {
   };
 
   const handleAddProduct = () => {
-    setCountProducto(countProducto + 1);
-    agregarProductoAlCarritoContext(producto);
+    if (countProducto < stock) {
+      setCountProducto((prevCount) => {
+        return prevCount + 1;
+      });
+      agregarProductoAlCarritoContext(producto);
+    } else {
+      showSwal();
+    }
   };
 
   return (

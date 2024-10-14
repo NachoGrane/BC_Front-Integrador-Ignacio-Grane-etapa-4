@@ -23,6 +23,20 @@ export const useLocalStorage = (clave, valorInicial = []) => {
     }
   };
 
+  const actualizarValor = (id, esSuma) => {
+    const productosAlmacenados = valorAlmacenado.filter(
+      (prod) => prod.id != id
+    );
+    const productoActualizado = valorAlmacenado.find((prod) => prod.id === id);
+    if (esSuma) {
+      productoActualizado.cantidad++;
+    } else {
+      productoActualizado.cantidad--;
+    }
+    const nuevosProductos = [...productosAlmacenados, productoActualizado];
+    setValorAlmacenado(nuevosProductos);
+  };
+
   const eliminarValor = (id) => {
     try {
       //const nuevoValorAlmacenado = valorAlmacenado // copia
@@ -45,5 +59,11 @@ export const useLocalStorage = (clave, valorInicial = []) => {
     setValorAlmacenado(valorInicial);
   };
   //           0
-  return [guardarValor, eliminarValor, limpiarValores, valorAlmacenado];
+  return [
+    guardarValor,
+    eliminarValor,
+    limpiarValores,
+    valorAlmacenado,
+    actualizarValor,
+  ];
 };
