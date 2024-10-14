@@ -1,8 +1,19 @@
-# React + Vite
+# URL GitHub Frontend : 
+https://github.com/NachoGrane/BC_Front-Integrador-Ignacio-Grane-etapa-4 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# URL GitHub Backend : 
+https://github.com/NachoGrane/BC-integrador-Ignacio-Grane-etapa-4 
 
-Currently, two official plugins are available:
+# URL Netlify :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://bc-ignacio-grane-integrador-etapa-4.netlify.app/
+
+# Endpoints:
+
+## VITE_BACKEND_PRODUCTOS : https://bc-integrador-ignacio-grane-etapa-4.onrender.com/api/v1/productos/
+
+## VITE_BACKEND_CARRITO : https://bc-integrador-ignacio-grane-etapa-4.onrender.com/api/v1/carritos/
+
+## VITE_BACKEND_CONTACTO : https://bc-integrador-ignacio-grane-etapa-4.onrender.com/api/v1/contacto/
+
+## VITE_BACKEND_UPLOADS : https://bc-integrador-ignacio-grane-etapa-4.onrender.com/api/v1/uploads/
