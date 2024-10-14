@@ -5,9 +5,7 @@ import CarritoContext from "../context/CarritoContext";
 const Carrito = () => {
   const { carrito, limpiarCarritoContext, guardarCarritoContext } =
     useContext(CarritoContext);
-  console.log("Me llego el carrito con: ", carrito);
 
-  // Calculo suma de precios
   const totalSumaPrecio = carrito.reduce(
     (suma, p) => suma + Number.parseFloat(p.precio),
     0
@@ -21,8 +19,8 @@ const Carrito = () => {
   };
 
   const handleComprar = () => {
-    console.log("Comprando...");
     guardarCarritoContext(carrito);
+    handleLimpiarCarrito();
     // Después puedo limpiar
   };
   // Eliminar todo del carrito
@@ -95,7 +93,6 @@ const Carrito = () => {
                 </button>
               </div>
             </div>
-            <div className="col-1"></div>
           </div>
         </div>
       </div>

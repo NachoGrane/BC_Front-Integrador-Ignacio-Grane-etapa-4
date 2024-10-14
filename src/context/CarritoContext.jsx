@@ -35,8 +35,14 @@ const CarritoProvider = ({ children }) => {
       //debugger
       const productoDeCarrito = obtenerProductoDeCarrito(producto);
       productoDeCarrito.cantidad++;
+
       window.localStorage.setItem("carrito", JSON.stringify(carrito));
     }
+  };
+  const removerCantidadProductoDelCarritoContext = (producto) => {
+    const productoDeCarrito = obtenerProductoDeCarrito(producto);
+    productoDeCarrito.cantidad--;
+    window.localStorage.setItem("carrito", JSON.stringify(carrito));
   };
 
   const eliminarProductoDelCarritoContext = (id) => {
@@ -69,6 +75,7 @@ const CarritoProvider = ({ children }) => {
     carrito,
     agregarProductoAlCarritoContext,
     eliminarProductoDelCarritoContext,
+    removerCantidadProductoDelCarritoContext,
     guardarCarritoContext,
     limpiarCarritoContext,
   };

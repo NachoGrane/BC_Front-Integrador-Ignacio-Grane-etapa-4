@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import ProductosContext from "../../context/ProductosContext";
 import Card from "../../components/Card";
+import BtnCarrito from "../../components/BtnCarrito";
 
 const Xbox = () => {
   const { productos } = useContext(ProductosContext);
@@ -23,6 +24,7 @@ const Xbox = () => {
               ))}
         </div>
       </div>
+      <BtnCarrito />
     </>
   );
 };

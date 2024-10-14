@@ -4,14 +4,29 @@ import CarritoContext from "../context/CarritoContext";
 import formatPrice from "../helpers/format-price.js";
 
 const ItemCarrito = ({ producto }) => {
-  const { eliminarProductoDelCarritoContext } = useContext(CarritoContext);
+  const {
+    eliminarProductoDelCarritoContext,
+    agregarProductoAlCarritoContext,
+    removerCantidadProductoDelCarritoContext,
+  } = useContext(CarritoContext);
   const [isRemoving, setIsRemoving] = useState(false);
+  const [countProducto, setCountProducto] = useState(1);
 
   const handleEliminarProductoCarrito = (id) => {
     setIsRemoving(true);
     setTimeout(() => {
       eliminarProductoDelCarritoContext(id);
     }, 350);
+  };
+
+  const handleDeleteProduct = () => {
+    setCountProducto(countProducto - 1);
+    removerCantidadProductoDelCarritoContext(producto);
+  };
+
+  const handleAddProduct = () => {
+    setCountProducto(countProducto + 1);
+    agregarProductoAlCarritoContext(producto);
   };
 
   return (
@@ -40,11 +55,19 @@ const ItemCarrito = ({ producto }) => {
             </p>
           </div>
           <div className="d-flex flex-row align-items-center w-100">
-            <button className="btn btn-primary btn_agregarProducto rounded-circle">
+            <button
+              className={`btn btn-primary btn_agregarProducto rounded-circle ${
+                countProducto === 1 ? "d-none" : ""
+              }`}
+              onClick={handleDeleteProduct}
+            >
               <i className="bi bi-dash-lg text-black"></i>
             </button>
-            <p className="m-0 mx-3 mx-md-5 fw-bold fs-3">1</p>
-            <button className="btn btn-primary btn_agregarProducto rounded-circle">
+            <p className="m-0 mx-3 mx-md-5 fw-bold fs-3">{countProducto}</p>
+            <button
+              className="btn btn-primary btn_agregarProducto rounded-circle"
+              onClick={handleAddProduct}
+            >
               <i className="bi bi-plus-lg text-black"></i>
             </button>
           </div>
